@@ -16,6 +16,6 @@
   "dependencies": {
     "fast-glob": "^3.2.11",
     "micromatch": "^4.0.5",
-    "vite": "^2.9.5"
+    "vite": "^2.8.6"
   }
 }
