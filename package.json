@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-no-bundle",
   "version": "1.0.0",
-  "description": "",
+  "description": "Use Vite for building without the bundling part.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ManBearTM/vite-plugin-no-bundle.git"
