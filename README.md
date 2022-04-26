@@ -1,4 +1,15 @@
 # vite-plugin-no-bundle
+Use Vite in library mode while skipping the bundling phase.
+
+## Motivation
+With the rise in monorepos and native ESM support, it is becoming increasingly popular to release
+libraries that are meant to be bundled by the consuming application (or even served directly).
+The support for library mode in Vite is still lacking when it comes to producing unbundled code,
+so this plugin aims to help with this in a few aspects:
+
+* Configure [preserveModules](https://rollupjs.org/guide/en/#outputpreservemodules) to produce unbundled library.
+* Automatically mark node modules as [external](https://rollupjs.org/guide/en/#external).
+* Option for copying files AS IS, relying instead on the consuming bundler.
 
 ## Install
 ```bash
@@ -91,6 +102,9 @@ export default defineConfig({
     })
   ],
 });
+
+// someFile.ts
+import './styles.css' // styles.css will be copied to output and import remains unchanged
 ```
 
 **internal**
@@ -111,7 +125,7 @@ import noBundlePlugin from 'vite-plugin-no-bundle';
 export default defineConfig({
   plugins: [
     noBundlePlugin({
-      copy: '**/*.css',
+      internal: '**/*.cjs',
     })
   ],
 });
