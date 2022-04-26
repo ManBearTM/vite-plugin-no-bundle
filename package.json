@@ -1,6 +1,7 @@
 {
   "name": "vite-plugin-no-bundle",
   "version": "1.0.0",
+  "main": "src/index.ts",
   "description": "Use Vite for building without the bundling part.",
   "repository": {
     "type": "git",
