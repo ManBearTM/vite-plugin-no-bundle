@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "main": "dist/index.js",
   "description": "Use Vite for building without the bundling part.",
+  "keywords": ["vite-plugin", "unbundle"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ManBearTM/vite-plugin-no-bundle.git"
