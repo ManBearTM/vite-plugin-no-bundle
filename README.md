@@ -36,7 +36,7 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: 'src/myEntryPoint.js' // required
+      entry: 'src/myEntryPoint.ts' // required
     }
   }
 });
