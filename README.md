@@ -34,6 +34,11 @@ export default defineConfig({
       internal: 'my-special-node-module'
     })
   ],
+  build: {
+    lib: {
+      entry: 'src/myEntryPoint.js' // required
+    }
+  }
 });
 ```
 
@@ -48,16 +53,9 @@ The root directory for the library source.
 See [output.preserveModulesRoot](https://rollupjs.org/guide/en/#outputpreservemodulesroot).
 
 ```js
-import { defineConfig } from 'vite';
-import noBundlePlugin from 'vite-plugin-no-bundle';
-
-export default defineConfig({
-  plugins: [
-    noBundlePlugin({
-      root: 'source',
-    })
-  ],
-});
+noBundlePlugin({
+  root: 'source',
+})
 ```
 
 **fileNames**
@@ -69,16 +67,9 @@ Pattern (or function returning a pattern) for determining the output file names.
 See last paragraph of [output.entryFileNames](https://rollupjs.org/guide/en/#outputentryfilenames).
 
 ```js
-import { defineConfig } from 'vite';
-import noBundlePlugin from 'vite-plugin-no-bundle';
-
-export default defineConfig({
-  plugins: [
-    noBundlePlugin({
-      fileNames: '[name][extname]',
-    })
-  ],
-});
+noBundlePlugin({
+  fileNames: '[name][extname]',
+})
 ```
 
 **copy**
@@ -88,20 +79,13 @@ export default defineConfig({
 
 One or more [globs](https://github.com/micromatch/micromatch) for matching files that should not
 be handled by Vite, but instead be marked as external and copied to the output directory AS IS.
-This is especially useful for static assets such as `.css`, which is otherwise inlined as a raw
+This is especially useful for static assets such as `.css`, which are otherwise inlined as raw
 strings when using Vite in library mode ([issue here](https://github.com/vitejs/vite/issues/4454)).
 
 ```js
-import { defineConfig } from 'vite';
-import noBundlePlugin from 'vite-plugin-no-bundle';
-
-export default defineConfig({
-  plugins: [
-    noBundlePlugin({
-      copy: '**/*.css',
-    })
-  ],
-});
+noBundlePlugin({
+  copy: '**/*.css',
+})
 
 // someFile.ts
 import './styles.css' // styles.css will be copied to output and import remains unchanged
@@ -119,14 +103,7 @@ _Since the plugin automatically marks node modules as external, this config can 
 the plugin to NOT handle certain files (it won't prevent other plugins from resolving them though)._
 
 ```js
-import { defineConfig } from 'vite';
-import noBundlePlugin from 'vite-plugin-no-bundle';
-
-export default defineConfig({
-  plugins: [
-    noBundlePlugin({
-      internal: '**/*.cjs',
-    })
-  ],
-});
+noBundlePlugin({
+  internal: '**/*.cjs',
+})
 ```
