@@ -94,14 +94,17 @@ export default function plugin(config?: Config): Plugin {
     },
 
     async resolveId(source, importer, options: any) {
+      // Remove any query parameters
+      const [id] = source.split('?');
+
       if (options.isEntry) return null;
-      if (isInternal(source)) return null;
-      if (isNodeModule(source)) return { id: source, external: true };
+      if (isInternal(id)) return null;
+      if (isNodeModule(id)) return { id, external: true };
 
       // Treat absolute paths as starting from project root
-      const absolutePath = path.isAbsolute(source)
-        ? path.join(root, source)
-        : path.join(path.dirname(importer), source);
+      const absolutePath = path.isAbsolute(id)
+        ? path.join(root, id)
+        : path.join(path.dirname(importer), id);
 
       // Get the relative path starting from `root`
       const relativePath = path.relative(root, absolutePath);
@@ -109,13 +112,9 @@ export default function plugin(config?: Config): Plugin {
       // Mark the source as external and with side effects if it matches a glob pattern,
       // excluding it from the build. The file is then emitted manually in buildStart.
       if (isCopyTarget(relativePath)) {
-        // Enforce relative path to avoid issues with preserveModulesRoot
-        const id = path.isAbsolute(source)
-          ? path.relative(path.dirname(importer), absolutePath)
-          : source;
-
         return {
-          id,
+          // Enforce relative path to avoid issues with preserveModulesRoot
+          id: path.isAbsolute(id) ? path.relative(path.dirname(importer), absolutePath) : id,
           external: true,
           moduleSideEffects: true,
         };

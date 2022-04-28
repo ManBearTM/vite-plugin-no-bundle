@@ -131,26 +131,25 @@ function plugin(config) {
         },
         resolveId: function (source, importer, options) {
             return __awaiter(this, void 0, void 0, function () {
-                var absolutePath, relativePath, id;
+                var id, absolutePath, relativePath;
                 return __generator(this, function (_a) {
+                    id = source.split('?')[0];
                     if (options.isEntry)
                         return [2 /*return*/, null];
-                    if (isInternal(source))
+                    if (isInternal(id))
                         return [2 /*return*/, null];
-                    if (isNodeModule(source))
-                        return [2 /*return*/, { id: source, external: true }];
-                    absolutePath = path_1["default"].isAbsolute(source)
-                        ? path_1["default"].join(root, source)
-                        : path_1["default"].join(path_1["default"].dirname(importer), source);
+                    if (isNodeModule(id))
+                        return [2 /*return*/, { id: id, external: true }];
+                    absolutePath = path_1["default"].isAbsolute(id)
+                        ? path_1["default"].join(root, id)
+                        : path_1["default"].join(path_1["default"].dirname(importer), id);
                     relativePath = path_1["default"].relative(root, absolutePath);
                     // Mark the source as external and with side effects if it matches a glob pattern,
                     // excluding it from the build. The file is then emitted manually in buildStart.
                     if (isCopyTarget(relativePath)) {
-                        id = path_1["default"].isAbsolute(source)
-                            ? path_1["default"].relative(path_1["default"].dirname(importer), absolutePath)
-                            : source;
                         return [2 /*return*/, {
-                                id: id,
+                                // Enforce relative path to avoid issues with preserveModulesRoot
+                                id: path_1["default"].isAbsolute(id) ? path_1["default"].relative(path_1["default"].dirname(importer), absolutePath) : id,
                                 external: true,
                                 moduleSideEffects: true
                             }];
