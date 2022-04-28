@@ -82,12 +82,13 @@ export default function plugin(config?: Config): Plugin {
 
     async buildStart() {
       if (config?.copy) {
-        const files = await fg(config.copy, { cwd: root });
+        const cwd = preserveModulesRoot ? path.join(root, preserveModulesRoot) : root;
+        const files = await fg(config.copy, { cwd });
         files.forEach(file => {
           this.emitFile({
             type: 'asset',
-            source: fs.readFileSync(path.join(root, file)),
-            fileName: preserveModulesRoot ? path.relative(preserveModulesRoot, file) : file,
+            source: fs.readFileSync(path.join(cwd, file)),
+            fileName: file
           });
         });
       }

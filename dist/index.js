@@ -107,20 +107,21 @@ function plugin(config) {
         },
         buildStart: function () {
             return __awaiter(this, void 0, void 0, function () {
-                var files;
+                var cwd_1, files;
                 var _this = this;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             if (!(config === null || config === void 0 ? void 0 : config.copy)) return [3 /*break*/, 2];
-                            return [4 /*yield*/, (0, fast_glob_1["default"])(config.copy, { cwd: root })];
+                            cwd_1 = preserveModulesRoot ? path_1["default"].join(root, preserveModulesRoot) : root;
+                            return [4 /*yield*/, (0, fast_glob_1["default"])(config.copy, { cwd: cwd_1 })];
                         case 1:
                             files = _a.sent();
                             files.forEach(function (file) {
                                 _this.emitFile({
                                     type: 'asset',
-                                    source: fs_1["default"].readFileSync(path_1["default"].join(root, file)),
-                                    fileName: preserveModulesRoot ? path_1["default"].relative(preserveModulesRoot, file) : file
+                                    source: fs_1["default"].readFileSync(path_1["default"].join(cwd_1, file)),
+                                    fileName: file
                                 });
                             });
                             _a.label = 2;
