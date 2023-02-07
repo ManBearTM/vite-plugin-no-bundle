@@ -12,7 +12,7 @@ function isNodeModule(id: string) {
   if (id.startsWith('.') || path.isAbsolute(id)) {
     return id.includes('/node_modules/');
   }
-  
+
   try {
     // If the `id` is neither relative nor absolute, AND is
     // resolvable by Node, then it has to be a node module.
@@ -88,7 +88,7 @@ export default function plugin(config?: Config): Plugin {
           this.emitFile({
             type: 'asset',
             source: fs.readFileSync(path.join(cwd, file)),
-            fileName: file
+            fileName: file,
           });
         });
       }
