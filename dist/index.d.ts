@@ -1,4 +1,4 @@
-import { Plugin } from 'vite';
+import type { Plugin } from 'vite';
 interface Config {
     /** @see https://rollupjs.org/guide/en/#outputpreservemodulesroot */
     root?: string;
