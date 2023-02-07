@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import micromatch from 'micromatch';
 import fg from 'fast-glob';
-import { Plugin } from 'vite';
+import type { Plugin } from 'vite';
 
 /** Checks if the provided `id` refers to a node module. */
 function isNodeModule(id: string) {
