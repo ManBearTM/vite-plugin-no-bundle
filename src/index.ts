@@ -56,15 +56,9 @@ export default function plugin(config?: Config): Plugin {
     enforce: 'pre',
     apply: 'build',
 
-    config(userConfig) {
-      const { entry } = userConfig.build?.lib || {};
-      if (!entry) throw new Error('Required field "build.lib.entry" could not be found');
+    config() {
       return {
         build: {
-          lib: {
-            entry,
-            formats: ['es'],
-          },
           rollupOptions: {
             output: {
               preserveModules: true,
