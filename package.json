@@ -7,6 +7,9 @@
     "vite-plugin",
     "unbundle"
   ],
+  "scripts": {
+    "build": "tsc src/index.ts --esModuleInterop --declaration --outDir dist"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ManBearTM/vite-plugin-no-bundle.git"
