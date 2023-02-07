@@ -19,7 +19,7 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
-    "fast-glob": "^3.2.11",
+    "fast-glob": "^3.2.12",
     "micromatch": "^4.0.5",
     "vite": "^2.8.6"
   }
