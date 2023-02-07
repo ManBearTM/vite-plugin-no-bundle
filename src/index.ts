@@ -99,6 +99,7 @@ export default function plugin(config?: Config): Plugin {
       const [id] = source.split('?');
 
       if (options.isEntry) return null;
+      if (!importer) return null;
       if (isInternal(id)) return null;
       if (isNodeModule(id)) return { id, external: true };
 
