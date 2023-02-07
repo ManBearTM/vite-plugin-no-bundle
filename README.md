@@ -1,17 +1,20 @@
 # vite-plugin-no-bundle
+
 Use Vite in library mode while skipping the bundling phase.
 
 ## Motivation
+
 With the rise in monorepos and native ESM support, it is becoming increasingly popular to release
 libraries that are meant to be bundled by the consuming application (or even served directly).
 The support for library mode in Vite is still lacking when it comes to producing unbundled code,
 so this plugin aims to help with this in a few aspects:
 
-* Configure [preserveModules](https://rollupjs.org/guide/en/#outputpreservemodules) to produce unbundled library.
-* Automatically mark node modules as [external](https://rollupjs.org/guide/en/#external).
-* Option for copying files AS IS, relying instead on the consuming bundler.
+- Configure [preserveModules](https://rollupjs.org/guide/en/#outputpreservemodules) to produce unbundled library.
+- Automatically mark node modules as [external](https://rollupjs.org/guide/en/#external).
+- Option for copying files AS IS, relying instead on the consuming bundler.
 
 ## Install
+
 ```bash
 # npm
 npm i -D vite-plugin-no-bundle
@@ -21,6 +24,7 @@ yarn add -D vite-plugin-no-bundle
 ```
 
 ## Usage
+
 ```js
 import { defineConfig } from 'vite';
 import noBundlePlugin from 'vite-plugin-no-bundle';
@@ -31,14 +35,14 @@ export default defineConfig({
       root: 'source',
       fileNames: '[name].mjs',
       copy: '**/*.css',
-      internal: 'my-special-node-module'
-    })
+      internal: 'my-special-node-module',
+    }),
   ],
   build: {
     lib: {
-      entry: 'src/myEntryPoint.ts' // required
-    }
-  }
+      entry: 'src/myEntryPoint.ts', // required
+    },
+  },
 });
 ```
 
@@ -55,12 +59,12 @@ See [output.preserveModulesRoot](https://rollupjs.org/guide/en/#outputpreservemo
 ```js
 noBundlePlugin({
   root: 'source',
-})
+});
 ```
 
 **fileNames**
 
-- **Type :** `string | (chunkInfo: ChunkInfo) => string` 
+- **Type :** `string | (chunkInfo: ChunkInfo) => string`
 - **Default :** `[name].js`
 
 Pattern (or function returning a pattern) for determining the output file names.
@@ -69,12 +73,12 @@ See last paragraph of [output.entryFileNames](https://rollupjs.org/guide/en/#out
 ```js
 noBundlePlugin({
   fileNames: '[name][extname]',
-})
+});
 ```
 
 **copy**
 
-- **Type :** `string | string[]` 
+- **Type :** `string | string[]`
 - **Default :** `undefined`
 
 One or more [globs](https://github.com/micromatch/micromatch) for matching files that should not
@@ -85,15 +89,19 @@ strings when using Vite in library mode ([issue here](https://github.com/vitejs/
 ```js
 noBundlePlugin({
   copy: '**/*.css',
-})
+});
 
 // someFile.ts
-import './styles.css' // styles.css will be copied to output and import remains unchanged
+import './styles.css'; // styles.css will be copied to output and import remains unchanged
 ```
+
+_Keep in mind that building to any other module format than ESM (such as commonjs) will likely
+prevent the consuming environment from resolving static assets. For example, Vite relies on
+`import.meta` for getting URL's to static assets, which is only valid when using ESM._
 
 **internal**
 
-- **Type :** `string | string[]` 
+- **Type :** `string | string[]`
 - **Default :** `undefined`
 
 One or more [globs](https://github.com/micromatch/micromatch) for matching files that should NOT
@@ -105,5 +113,5 @@ the plugin to NOT handle certain files (it won't prevent other plugins from reso
 ```js
 noBundlePlugin({
   internal: '**/*.cjs',
-})
+});
 ```
