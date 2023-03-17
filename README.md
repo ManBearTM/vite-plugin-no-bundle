@@ -34,6 +34,8 @@ npm install -D vite-plugin-no-bundle
 📜 In accordance with [Vite plugin convention], we provide a default export
 function that takes in a bunch of customization options.
 
+📚 You can find the complete list of options below! 👇
+
 ```js
 import { defineConfig } from "vite";
 import noBundlePlugin from "vite-plugin-no-bundle";
@@ -75,7 +77,7 @@ Here's an example project tree using ☝ the example `vite.config.ts` from above
 consumer from resolving static assets. Vite relies on `import.meta` for getting
 a URL's to static assets, which is only valid when using ESM.
 
-### Config
+### Options
 
 ```ts
 interface VitePluginNoBundleOptions {
