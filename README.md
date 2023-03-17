@@ -88,15 +88,6 @@ interface VitePluginNoBundleOptions {
 };
 ```
 
-- **`root`:** Exposes [`output.preserveModulesRoot`], which controls which part
-  of the full path to exclude when putting files into the `dist/` folder. Make
-  sure to change this if you're using something other than `src/` for your
-  source code.
-
-- **`fileNames`:** A pattern (or a function returning a pattern) for determining
-  the output file names. You can use any string substitutions described in
-  [`output.entryFileNames`] from Rollup.
-
 - **`copy`:** One or more [globs] for matching files that should not be handled
   by Vite, but instead be marked as external and copied to the output directory
   **as is**. This is especially useful for static assets such as `.css`, which
@@ -106,6 +97,15 @@ interface VitePluginNoBundleOptions {
 - **`internal`:** One or more [globs] for matching files that should **not** be
   automatically marked as external. This can be used to tell the plugin to
   **not** handle certain files and leave them up to other plugins & resolvers.
+
+- **`fileNames`:** A pattern (or a function returning a pattern) for determining
+  the output file names. You can use any string substitutions described in
+  [`output.entryFileNames`] from Rollup.
+
+- **`root`:** Exposes [`output.preserveModulesRoot`], which controls which part
+  of the full path to exclude when putting files into the `dist/` folder. Make
+  sure to change this if you're using something other than `src/` for your
+  source code.
 
 ### Use cases
 
