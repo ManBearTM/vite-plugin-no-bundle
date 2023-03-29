@@ -21,6 +21,8 @@ some of those gaps. 🚀
 
 ## Install
 
+![npm](https://img.shields.io/static/v1?style=for-the-badge&message=npm&color=CB3837&logo=npm&logoColor=FFFFFF&label=)
+
 This plugin is designed to work with Vite in a development environment using
 Node.js. You can install this package using npm, [Yarn], or [pnpm] using a
 command similar to this example for npm:
@@ -30,6 +32,8 @@ npm install -D vite-plugin-no-bundle
 ```
 
 ## Usage
+
+![Vite](https://img.shields.io/static/v1?style=for-the-badge&message=Vite&color=646CFF&logo=Vite&logoColor=FFFFFF&label=)
 
 📜 In accordance with [Vite plugin convention], we provide a default export
 function that takes in a bunch of customization options.
