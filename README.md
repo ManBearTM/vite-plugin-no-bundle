@@ -111,12 +111,23 @@ interface VitePluginNoBundleOptions {
 
 TODO: Add use cases
 
+## Development
+
+![TypeScript](https://img.shields.io/static/v1?style=for-the-badge&message=TypeScript&color=3178C6&logo=TypeScript&logoColor=FFFFFF&label=)
+
+This is a fairly basic Vite plugin. The only compilation step is to run
+`npm run build` which uses [tsup].
+
+If you're interested in learning more about Vite plugins and how they work,
+check out the [Plugin API | Vite] page!
+
 <!-- prettier-ignore-start -->
 [vite]: https://vitejs.dev/
-[vite config]: https://vitejs.dev/config/
 [vite plugin convention]: https://vitejs.dev/guide/api-plugin.html#simple-examples:~:text=It%20is%20common%20convention%20to%20author%20a%20Vite/Rollup%20plugin%20as%20a%20factory%20function%20that%20returns%20the%20actual%20plugin%20object.%20The%20function%20can%20accept%20options%20which%20allows%20users%20to%20customize%20the%20behavior%20of%20the%20plugin.
 [`output.preserveModulesRoot`]: https://rollupjs.org/guide/en/#outputpreservemodulesroot
 [`output.entryFileNames`]: https://rollupjs.org/guide/en/#outputentryfilenames
 [globs]: https://github.com/micromatch/micromatch#readme
 [vitejs/vite#4454]: https://github.com/vitejs/vite/issues/4454
+[tsup]: https://github.com/egoist/tsup#readme
+[Plugin API | Vite]: https://vitejs.dev/guide/api-plugin.html
 <!-- prettier-ignore-end -->
