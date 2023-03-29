@@ -19,7 +19,7 @@ application or even served directly. The support for library mode in Vite is
 still lacking when it comes to producing unbundled code, so this plugin fills in
 some of those gaps. 🚀
 
-## Install
+## Installation
 
 ![npm](https://img.shields.io/static/v1?style=for-the-badge&message=npm&color=CB3837&logo=npm&logoColor=FFFFFF&label=)
 
