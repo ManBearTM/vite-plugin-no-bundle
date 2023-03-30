@@ -128,7 +128,7 @@ check out the [Plugin API | Vite] page!
 
 <!-- prettier-ignore-start -->
 [vite]: https://vitejs.dev/
-[vite plugin convention]: https://vitejs.dev/guide/api-plugin.html#simple-examples:~:text=It%20is%20common%20convention%20to%20author%20a%20Vite/Rollup%20plugin%20as%20a%20factory%20function%20that%20returns%20the%20actual%20plugin%20object.%20The%20function%20can%20accept%20options%20which%20allows%20users%20to%20customize%20the%20behavior%20of%20the%20plugin.
+[vite plugin convention]: https://vitejs.dev/guide/api-plugin.html#simple-examples
 [`output.preserveModulesRoot`]: https://rollupjs.org/guide/en/#outputpreservemodulesroot
 [`output.entryFileNames`]: https://rollupjs.org/guide/en/#outputentryfilenames
 [globs]: https://github.com/micromatch/micromatch#readme
