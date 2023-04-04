@@ -136,4 +136,6 @@ check out the [Plugin API | Vite] page!
 [tsup]: https://github.com/egoist/tsup#readme
 [Plugin API | Vite]: https://vitejs.dev/guide/api-plugin.html
 [@ManBearTM]: https://github.com/ManBearTM
+[yarn]: https://yarnpkg.com/
+[pnpm]: https://pnpm.io/
 <!-- prettier-ignore-end -->
