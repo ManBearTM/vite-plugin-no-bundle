@@ -113,7 +113,15 @@ interface VitePluginNoBundleOptions {
 
 ### Use cases
 
-TODO: Add use cases
+You can use this plugin to force Vite to leave your custom fine-tuned file
+structure alone. This is especially useful when consuming just _part_ of a
+module directly via a deep import. For instance, if you have two Vite projects,
+one library and one app, the library could use this plugin so that the app is
+able to bundle everything together **on its own terms**. 🎁
+
+Another good use-case is serving individual files via an HTTP server. Sometimes
+you just want a plain TS ➡️ JS file conversion (with some extra features). This
+plugin lets you do just that, no magic required. 🧙‍♂️
 
 ## Development
 
