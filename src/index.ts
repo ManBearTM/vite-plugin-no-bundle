@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import micromatch from 'micromatch';
 import fg from 'fast-glob';
-import type { Plugin } from 'vite';
+import type { Plugin, Rollup } from 'vite';
 
 /** Checks if the provided `id` refers to a node module. */
 function isNodeModule(id: string) {
@@ -28,8 +28,6 @@ function isNodeModule(id: string) {
 interface Config {
   /** @see https://rollupjs.org/guide/en/#outputpreservemodulesroot */
   root?: string;
-  /** @see https://rollupjs.org/guide/en/#outputentryfilenames */
-  fileNames?: string;
   /** Glob(s) for marking files as external while copying them to the output. */
   copy?: string | string[];
   /** Glob(s) for marking files as non-external, preserving them in the output. */
@@ -38,7 +36,6 @@ interface Config {
 
 export default function plugin(config?: Config): Plugin {
   const preserveModulesRoot = config?.root ?? 'src';
-  const entryFileNames = config?.fileNames ?? '[name].js';
 
   // Store the resolved absolute root path
   let root: string;
@@ -56,14 +53,16 @@ export default function plugin(config?: Config): Plugin {
     enforce: 'pre',
     apply: 'build',
 
-    config() {
+    config(userConfig) {
+      const { entry, fileName = '[name]' } = userConfig.build?.lib || {};
+      if (!entry) throw new Error('Required field "build.lib.entry" could not be found');
       return {
         build: {
+          lib: { entry, fileName },
           rollupOptions: {
             output: {
               preserveModules: true,
               preserveModulesRoot,
-              entryFileNames,
             },
           },
         },
