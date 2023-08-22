@@ -148,8 +148,7 @@ plugin lets you do just that, no magic required. 🧙‍♂️
 ![TypeScript](https://img.shields.io/static/v1?style=for-the-badge&message=TypeScript&color=3178C6&logo=TypeScript&logoColor=FFFFFF&label=)
 
 This is a fairly basic Vite plugin. The only compilation step is to run
-`npm run build` which uses [tsup]. There is no GitHub Action at present to
-auto-publish to npm, so you'll have to bug [@ManBearTM] to do it manually! 😁
+`npm run build` which uses [tsup].
 
 If you're interested in learning more about Vite plugins and how they work,
 check out the [Plugin API | Vite] page!
