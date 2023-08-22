@@ -41,17 +41,17 @@ function that takes in a bunch of customization options.
 📚 You can find the complete list of options below! 👇
 
 ```js
-import { defineConfig } from "vite";
-import noBundlePlugin from "vite-plugin-no-bundle";
+import { defineConfig } from 'vite';
+import noBundlePlugin from 'vite-plugin-no-bundle';
 
 export default defineConfig({
   build: {
     lib: {
-      formats: ["es"],
-      entry: "src/index.ts",
+      formats: ['es'],
+      entry: 'src/index.ts',
     },
   },
-  plugins: [noBundlePlugin({ copy: "**/*.css" })],
+  plugins: [noBundlePlugin({ copy: '**/*.css' })],
 });
 ```
 
@@ -87,9 +87,8 @@ a URL's to static assets, which is only valid when using ESM.
 interface VitePluginNoBundleOptions {
   copy?: string | string[];
   internal?: string | string[];
-  fileNames?: string | (c: ChunkInfo) => string; //= '[name].js'
   root?: string; //= 'src'
-};
+}
 ```
 
 - **`copy`:** One or more [globs] for matching files that should not be handled
@@ -102,14 +101,35 @@ interface VitePluginNoBundleOptions {
   automatically marked as external. This can be used to tell the plugin to
   **not** handle certain files and leave them up to other plugins & resolvers.
 
-- **`fileNames`:** A pattern (or a function returning a pattern) for determining
-  the output file names. You can use any string substitutions described in
-  [`output.entryFileNames`] from Rollup.
-
 - **`root`:** Exposes [`output.preserveModulesRoot`], which controls which part
   of the full path to exclude when putting files into the `dist/` folder. Make
   sure to change this if you're using something other than `src/` for your
   source code.
+
+### Customizing file names
+
+In previous versions of this plugin, it was possible to customize the generated
+file names via the `fileNames` option. This has been removed in favor of Vite's
+own `build.lib.fileName` option. By default, this plugin uses `[name]` as the
+`fileName`, resulting in files keeping their original name with the appropriate
+extension appended based on module format. This change was implemented to allow
+multiple module formats to be emitted using this plugin. Example configuration:
+
+```js
+import { defineConfig } from 'vite';
+import noBundlePlugin from 'vite-plugin-no-bundle';
+
+export default defineConfig({
+  build: {
+    lib: {
+      formats: ['es', 'cjs'], // Generate multiple formats without bundling
+      fileName: 'my-lib-[name]', // Extension automatically determined by format
+      entry: 'src/index.ts',
+    },
+  },
+  plugins: [noBundlePlugin({ copy: '**/*.css' })],
+});
+```
 
 ### Use cases
 
@@ -138,7 +158,6 @@ check out the [Plugin API | Vite] page!
 [vite]: https://vitejs.dev/
 [vite plugin convention]: https://vitejs.dev/guide/api-plugin.html#simple-examples
 [`output.preserveModulesRoot`]: https://rollupjs.org/guide/en/#outputpreservemodulesroot
-[`output.entryFileNames`]: https://rollupjs.org/guide/en/#outputentryfilenames
 [globs]: https://github.com/micromatch/micromatch#readme
 [vitejs/vite#4454]: https://github.com/vitejs/vite/issues/4454
 [tsup]: https://github.com/egoist/tsup#readme
