@@ -1,29 +1,11 @@
+import { createRequire } from 'node:module';
 import path from 'path';
 import fs from 'fs';
 import micromatch from 'micromatch';
 import fg from 'fast-glob';
 import type { Plugin } from 'vite';
 
-/** Checks if the provided `id` refers to a node module. */
-function isNodeModule(id: string) {
-  // Relative and absolute paths will almost always be
-  // resolvable using the file system, so require.resolve
-  // is not a reliable method for those types of import.
-  if (id.startsWith('.') || path.isAbsolute(id)) {
-    return id.includes('/node_modules/');
-  }
-
-  try {
-    // If the `id` is neither relative nor absolute, AND is
-    // resolvable by Node, then it has to be a node module.
-    require.resolve(id);
-    return true;
-  } catch (_) {
-    // Failing to resolve here could mean the `id` is
-    // meant to be resolved by a different plugin.
-    return false;
-  }
-}
+const require = createRequire(import.meta.url);
 
 interface Config {
   /** @see https://rollupjs.org/guide/en/#outputpreservemodulesroot */
@@ -47,6 +29,27 @@ export default function plugin(config?: Config): Plugin {
   // Create a matcher function from provided copy config (if any)
   const isCopyTarget = (file: string) =>
     config?.copy ? micromatch.isMatch(file, config.copy) : false;
+
+  /** Checks if the provided `id` refers to a node module. */
+  const isNodeModule = (id: string) => {
+    // Relative and absolute paths will almost always be
+    // resolvable using the file system, so require.resolve
+    // is not a reliable method for those types of import.
+    if (id.startsWith('.') || path.isAbsolute(id)) {
+      return id.includes('/node_modules/');
+    }
+
+    try {
+      // If the `id` is neither relative nor absolute, AND is
+      // resolvable by Node, then it has to be a node module.
+      require.resolve(id, { paths: [root] });
+      return true;
+    } catch (e) {
+      // Failing to resolve here could mean the `id` is
+      // meant to be resolved by a different plugin.
+      return false;
+    }
+  };
 
   return {
     name: 'no-bundle',

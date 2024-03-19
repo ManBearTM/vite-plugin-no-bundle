@@ -1,6 +1,7 @@
 {
   "name": "vite-plugin-no-bundle",
-  "version": "3.0.0",
+  "type": "module",
+  "version": "4.0.0",
   "description": "Use Vite for building without the bundling part.",
   "keywords": [
     "vite-plugin",
@@ -9,18 +10,17 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.js"
     }
   },
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --dts --format cjs,esm"
+    "build": "tsup src/index.ts --dts --format esm",
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -29,14 +29,15 @@
   "author": "ManBearTM",
   "license": "Unlicense",
   "devDependencies": {
-    "@types/micromatch": "^4.0.2",
-    "@types/node": "^18.13.0",
-    "tsup": "^6.5.0",
-    "typescript": "^4.9.5",
-    "vite": "^4.1.1"
+    "@types/micromatch": "^4.0.6",
+    "@types/node": "^20.11.28",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6",
+    "vitest": "^1.4.0"
   },
   "dependencies": {
-    "fast-glob": "^3.2.12",
+    "fast-glob": "^3.3.2",
     "micromatch": "^4.0.5"
   }
 }
