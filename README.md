@@ -4,7 +4,7 @@
 
 <div align="center">
 
-![](https://i.imgur.com/whutZeK.png)
+![screenshot](https://i.imgur.com/whutZeK.png)
 
 </div>
 
@@ -22,6 +22,8 @@ some of those gaps. 🚀
 ## Installation
 
 ![npm](https://img.shields.io/static/v1?style=for-the-badge&message=npm&color=CB3837&logo=npm&logoColor=FFFFFF&label=)
+
+> From v4, `vite-plugin-no-bundle` requires **Vite 5**.
 
 This plugin is designed to work with Vite in a development environment using
 Node.js. You can install this package using npm, [Yarn], or [pnpm] using a
@@ -57,7 +59,7 @@ export default defineConfig({
 
 Here's an example project tree using ☝ the example `vite.config.ts` from above:
 
-```
+```text
 .
 ├── dist/
 │   ├── index.js
@@ -99,7 +101,7 @@ interface VitePluginNoBundleOptions {
 
 - **`internal`:** One or more [globs] for matching files that should **not** be
   automatically marked as external. This can be used to tell the plugin to
-  **not** handle certain files and leave them up to other plugins & resolvers.
+  **not** handle certain files and leave them up to other plugins and resolvers.
 
 - **`root`:** Exposes [`output.preserveModulesRoot`], which controls which part
   of the full path to exclude when putting files into the `dist/` folder. Make
@@ -143,12 +145,16 @@ Another good use-case is serving individual files via an HTTP server. Sometimes
 you just want a plain TS ➡️ JS file conversion (with some extra features). This
 plugin lets you do just that, no magic required. 🧙‍♂️
 
+📂 **[Browse Sample Configurations](./samples)** - For practical examples,
+explore the `samples` folder.
+
 ## Development
 
 ![TypeScript](https://img.shields.io/static/v1?style=for-the-badge&message=TypeScript&color=3178C6&logo=TypeScript&logoColor=FFFFFF&label=)
 
 This is a fairly basic Vite plugin. The only compilation step is to run
-`npm run build` which uses [tsup].
+`npm run build` which uses [tsup]. Sample configurations serve as test
+cases for different plugin scenarios and can be run using `npm test`.
 
 If you're interested in learning more about Vite plugins and how they work,
 check out the [Plugin API | Vite] page!
@@ -161,7 +167,6 @@ check out the [Plugin API | Vite] page!
 [vitejs/vite#4454]: https://github.com/vitejs/vite/issues/4454
 [tsup]: https://github.com/egoist/tsup#readme
 [Plugin API | Vite]: https://vitejs.dev/guide/api-plugin.html
-[@ManBearTM]: https://github.com/ManBearTM
 [yarn]: https://yarnpkg.com/
 [pnpm]: https://pnpm.io/
 <!-- prettier-ignore-end -->
