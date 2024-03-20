@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format esm",
-    "test": "vitest"
+    "test": "npm --prefix samples/internal-files install && vitest"
   },
   "repository": {
     "type": "git",

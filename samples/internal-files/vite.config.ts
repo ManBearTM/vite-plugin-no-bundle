@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import noBundle from 'vite-plugin-no-bundle';
+import noBundle from '../../src/index';
 
 export default defineConfig({
   build: {

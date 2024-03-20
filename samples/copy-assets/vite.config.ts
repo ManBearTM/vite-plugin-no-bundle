@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import noBundle from 'vite-plugin-no-bundle';
+import noBundle from '../../src/index';
 
 export default defineConfig({
   build: {

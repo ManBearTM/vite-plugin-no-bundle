@@ -4,9 +4,6 @@
     "moduleResolution": "Node",
     "target": "ES2020",
     "esModuleInterop": true,
-    "strict": true,
-    "paths": {
-      "vite-plugin-no-bundle": ["./src/index.ts"]
-    }
+    "strict": true
   }
 }

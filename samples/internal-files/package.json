@@ -6,8 +6,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite-plugin-no-bundle": "file:../.."
+    "@vitejs/plugin-react": "^4.2.1"
   },
   "scripts": {
     "dev": "vite",
