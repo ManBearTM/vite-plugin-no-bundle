@@ -1,12 +1,11 @@
-name: Publish package to npm
+name: Run tests
 
-on:
-  release:
-    types: [created]
+on: [pull_request]
 
 jobs:
-  publish-npm:
+  test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -15,7 +14,3 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm install
       - run: npm test
-      - run: npm run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
